@@ -4,15 +4,13 @@
 
 variable "name" {
   type        = string
-  description = "Nome da VPC"
+  description = "Nome a ser utilizado em todos os recursos desse módulo, deve ser utilizado como um identificador."
 }
 
 variable "cidr_block" {
   type        = string
-  description = ""
+  description = "O bloco CIDR para VPC."
 }
-
-
 
 # ----------------------------------------------------------------------------------------------------------------------
 # VARIÁVEIS OPICIONAIS
