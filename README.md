@@ -13,8 +13,8 @@ Terraform module to provide a AWS VPC
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
-| cidr\_block | n/a | `string` | n/a | yes |
-| name | Nome da VPC | `string` | n/a | yes |
+| cidr\_block | O bloco CIDR para VPC. | `string` | n/a | yes |
+| name | Nome a ser utilizado em todos os recursos desse módulo, deve ser utilizado como um identificador. | `string` | n/a | yes |
 | azs | Uma lista das zonas de disponibilidade da região. | `list(string)` | `[]` | no |
 | enable\_classiclink | n/a | `string` | `""` | no |
 | enable\_classiclink\_dns\_support | n/a | `string` | `""` | no |
