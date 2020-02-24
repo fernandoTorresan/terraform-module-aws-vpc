@@ -75,22 +75,51 @@ resource "aws_subnet" "public" {
 # NAT Gateway
 # ----------------------------------------------------------------------------------------------------------------------
 
+locals {
+  nat_gateway_ips = split(
+    ",",
+    var.reuse_nat_ips ? join(",", var.external_nat_ip_ids) : join(",", aws_eip.nat.*.id),
+  )
+}
+
 resource "aws_eip" "nat" {
+  count = var.reuse_nat_ips ? local.nat_gateway_ips : 0
+  vpc   = true
 
-  tags {
-
-  }
-
+  tags = merge(
+    {
+      "Name" = format(
+        "%s-%s",
+        var.name,
+        element(var.azs, var.single_nat_gateway ? 0 : count.index)
+      )
+    },
+    var.tags
+  )
 }
 
 resource "aws_nat_gateway" "this" {
-  count         = var
-  allocation_id = ""
-  subnet_id     = ""
+  count = local.nat_gateway_count
+
+  allocation_id = element(local.nat_gateway_ips, var.single_nat_gateway ? 0 : count.index)
+  subnet_id     = element(aws_subnet.public.*.id, var.single_nat_gateway ? 0 : count.index)
+
+  tags = merge(
+    {
+      "Name" = format(
+        "%s-%s",
+        var.name,
+        element(var.azs, var.single_nat_gateway ? 0 : count.index)
+      )
+    },
+    var.tags
+  )
+
+  depends_on = [aws_internet_gateway.this]
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Internet Gatewasy (IGW)
+# Internet Gateway (IGW)
 # ----------------------------------------------------------------------------------------------------------------------
 
 resource "aws_internet_gateway" "this" {
