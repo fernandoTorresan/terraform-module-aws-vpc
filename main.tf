@@ -163,3 +163,58 @@ resource "aws_route" "public_internet_gateway" {
     create = "5m"
   }
 }
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Private Routes
+# ----------------------------------------------------------------------------------------------------------------------
+
+resource "aws_route_table" "private" {
+  count = local.nat_gateway_count
+
+  vpc_id = aws_vpc.this.id
+
+  tags = merge(
+    {
+      "Name" = var.single_nat_gateway ? "${var.name}-${var.private_subnet_suffix}" : format(
+        "%s-${var.private_subnet_suffix}-%s",
+        var.name,
+        element(var.azs, count.index)
+      )
+    },
+    var.tags
+  )
+
+  lifecycle {
+    ignore_changes = [propagation_vgws]
+  }
+}
+
+resource "aws_route" "private_nat_gateway" {
+  count = local.nat_gateway_count
+
+  route_table_id         = element(aws_route_table.private.*.id, count.index)
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = element(aws_nat_gateway.this.*.id, count.index)
+
+  timeouts {
+    create = "5m"
+  }
+}
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Route Table Association (Route table - Subnets)
+# ----------------------------------------------------------------------------------------------------------------------
+
+resource "aws_route_table_association" "private" {
+  count = length(var.private_subnets) > 0 ? length(var.private_subnets) : 0
+
+  route_table_id = element(aws_route_table.private.*.id, var.single_nat_gateway ? 0 : count.index)
+  subnet_id      = element(aws_subnet.private.*.id, count.index)
+}
+
+resource "aws_route_table_association" "public" {
+  count = length(var.public_subnets) > 0 ? length(var.public_subnets) : 0
+
+  route_table_id = aws_route_table.public[0].id
+  subnet_id      = element(var.public_subnets.*.id, count.index)
+}
