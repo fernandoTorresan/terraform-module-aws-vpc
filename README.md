@@ -7,7 +7,7 @@ Terraform module to provide a AWS VPC
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | ~> 2.50 |
 
 ## Inputs
 
