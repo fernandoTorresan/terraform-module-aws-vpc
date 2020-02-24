@@ -93,5 +93,17 @@ variable "enable_ipv6" {
 variable "tags" {
   type        = map(string)
   default     = {}
-  description = "Tags adicionais"
+  description = "Tags adicionais para todos os recursos do módulo."
+}
+
+variable "reuse_nat_ips" {
+  type        = bool
+  description = "Deve ser true caso deseja que não seja criado um EIPs para o NAT Gateway, e então deve ser informado através da variável `external_nat_ip_ids`."
+  default     = false
+}
+
+variable "external_nat_ip_ids" {
+  type        = list(string)
+  description = "Lista dos IDs de EPI para serem vinculados com os NAT Gateways. Deve ser utilizado em conjunto com o a variável `reuse_nat_ips`."
+  default     = []
 }
