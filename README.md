@@ -37,7 +37,18 @@ Terraform module to provide a AWS VPC
 
 | Name | Description |
 |------|-------------|
-| vpc\_cidr | VPC CIDR. |
-| vpc\_id | ID da VPC. |
+| default\_network\_acl\_id | O ID do network ACL padrão. |
+| default\_route\_table\_id | O ID da tabela de rotas padrão. |
+| default\_security\_group\_id | O ID do security group criado por padrão no momento da criação da VPC. |
+| private\_subnets | Lista dos IDs das subnets privadas. |
+| private\_subnets\_arn | Lista dos ARNs das subnets privadas. |
+| private\_subnets\_cidr\_blocks | Lista dos blocos CIDR das subnets privadas. |
+| public\_route\_table\_ids | Lista dos IDs das tabelas de rotas públicas. |
+| public\_subnet\_arns | Lista dos ARNs das subnets públicas. |
+| public\_subnets | Lista dos IDs das subnets públicas. |
+| public\_subnets\_cidr\_blocks | Lista dos blocos CIDR das subnets públicas. |
+| vpc\_arn | O ARN da VPC. |
+| vpc\_cidr\_block | O bloco CIDR da VPC. |
+| vpc\_id | O ID da VPC. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
