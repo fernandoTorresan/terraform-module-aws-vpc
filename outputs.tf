@@ -74,3 +74,32 @@ output "public_route_table_ids" {
   value       = aws_route_table.public.*.id
   description = "Lista dos IDs das tabelas de rotas públicas."
 }
+
+output "private_route_table_ids" {
+  value       = aws_route_table.private.*.id
+  description = "Lista dos IDs das tabelas de rotas privadas."
+}
+
+# ----------------------------------------------------------------------------------------------------------------------
+# NAT Gateway / Internet Gateway
+# ----------------------------------------------------------------------------------------------------------------------
+
+output "nat_ids" {
+  value       = aws_eip.nat.*.id
+  description = "Lista de IDs dos Elastic IPs criados para os NAT Gateways."
+}
+
+output "nat_public_ips" {
+  value       = aws_eip.nat.*.public_ip
+  description = "Lista dos Elastic IPs criados para os NAT Gateways."
+}
+
+output "natgw_ids" {
+  value       = aws_nat_gateway.this.*.id
+  description = "Lista dos IDs dos NAT Gateways."
+}
+
+output "igw_id" {
+  value       = concat(aws_internet_gateway.this.*.id, [""])[0]
+  description = "O ID do Internet Gateway."
+}

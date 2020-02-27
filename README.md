@@ -1,6 +1,24 @@
-# terraform-module-aws-vpc
+# Terraform-module-aws-vpc
 Terraform module to provide a AWS VPC
 
+
+## Review Pre Commit
+
+Para manter a documentação das variáveis no README atualizada e revisar a formatação dos arquivos do 
+terraform  antes do commit devem ser instalados o pre-commit e o terraform-docs conforme abaixo:
+
+```bash
+sudo pip install pre-commit
+sudo wget https://github.com/segmentio/terraform-docs/releases/download/v0.8.2/terraform-docs-v0.8.2-linux-amd64 \
+     -O /usr/local/bin/terraform-docs
+sudo chmod +x /usr/local/bin/terraform-docs
+```
+
+Uma vez instalados execute a configuração do pre-commit no repositório corrente:
+
+```bash
+pre-commit install
+```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Providers
@@ -40,6 +58,11 @@ Terraform module to provide a AWS VPC
 | default\_network\_acl\_id | O ID do network ACL padrão. |
 | default\_route\_table\_id | O ID da tabela de rotas padrão. |
 | default\_security\_group\_id | O ID do security group criado por padrão no momento da criação da VPC. |
+| igw\_id | O ID do Internet Gateway. |
+| nat\_ids | Lista de IDs dos Elastic IPs criados para os NAT Gateways. |
+| nat\_public\_ips | Lista dos Elastic IPs criados para os NAT Gateways. |
+| natgw\_ids | Lista dos IDs dos NAT Gateways. |
+| private\_route\_table\_ids | Lista dos IDs das tabelas de rotas privadas. |
 | private\_subnets | Lista dos IDs das subnets privadas. |
 | private\_subnets\_arn | Lista dos ARNs das subnets privadas. |
 | private\_subnets\_cidr\_blocks | Lista dos blocos CIDR das subnets privadas. |
