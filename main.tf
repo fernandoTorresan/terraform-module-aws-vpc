@@ -83,7 +83,7 @@ locals {
 }
 
 resource "aws_eip" "nat" {
-  count = var.reuse_nat_ips ? local.nat_gateway_ips : 0
+  count = false == var.reuse_nat_ips ? local.nat_gateway_count : 0
   vpc   = true
 
   tags = merge(
@@ -185,7 +185,7 @@ resource "aws_route_table" "private" {
   )
 
   lifecycle {
-    ignore_changes = [propagation_vgws]
+    ignore_changes = [propagating_vgws]
   }
 }
 
@@ -216,5 +216,5 @@ resource "aws_route_table_association" "public" {
   count = length(var.public_subnets) > 0 ? length(var.public_subnets) : 0
 
   route_table_id = aws_route_table.public[0].id
-  subnet_id      = element(var.public_subnets.*.id, count.index)
+  subnet_id      = element(aws_subnet.public.*.id, count.index)
 }
