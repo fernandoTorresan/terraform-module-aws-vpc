@@ -1,6 +1,9 @@
 # Terraform-module-aws-vpc
 Terraform module to provide a AWS VPC
 
+## Exemplos de uso
+
+- [simple-vpc](/examples/simple)
 
 ## Review Pre Commit
 
