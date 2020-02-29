@@ -65,21 +65,33 @@ variable "azs" {
 }
 
 variable "enable_classiclink" {
-  default = ""
+  type        = bool
+  default     = null
+  description = "Deve ser true para habilitar ClassicLink para VPC. Válido somente em regiões e contas que tem suporte para EC2 Classic."
 }
+
 variable "enable_classiclink_dns_support" {
-  default = ""
+  type        = bool
+  default     = null
+  description = "Deve ser true para habilitar suporete ao ClassicLink DNS para VPC. Válido somente em regiões e contas que tem suporte para EC2 Classic."
 }
+
 variable "enable_dns_hostnames" {
-  default = ""
+  type        = bool
+  default     = false
+  description = "Deve ser como true para habilitar DNS hostnames na VPC."
 }
 
 variable "enable_dns_support" {
-  default = ""
+  type        = bool
+  default     = true
+  description = "Deve estar como true para habilitar suporte de DNS na VPC."
 }
 
 variable "instance_tenancy" {
-  default = "default"
+  type        = string
+  default     = "default"
+  description = "Define opção de tenancy para instâncias criadas na VPC."
 }
 
 variable "enable_ipv6" {

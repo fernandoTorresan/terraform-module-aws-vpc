@@ -32,15 +32,15 @@ pre-commit install
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
 | cidr\_block | O bloco CIDR para VPC. | `string` | n/a | yes |
+| enable\_classiclink | Deve ser true para habilitar ClassicLink para VPC. Válido somente em regiões e contas que tem suporte para EC2 Classic. | `bool` | n/a | yes |
+| enable\_classiclink\_dns\_support | Deve ser true para habilitar suporete ao ClassicLink DNS para VPC. Válido somente em regiões e contas que tem suporte para EC2 Classic. | `bool` | n/a | yes |
 | name | Nome a ser utilizado em todos os recursos desse módulo, deve ser utilizado como um identificador. | `string` | n/a | yes |
 | azs | Uma lista das zonas de disponibilidade da região. | `list(string)` | `[]` | no |
-| enable\_classiclink | n/a | `string` | `""` | no |
-| enable\_classiclink\_dns\_support | n/a | `string` | `""` | no |
-| enable\_dns\_hostnames | n/a | `string` | `""` | no |
-| enable\_dns\_support | n/a | `string` | `""` | no |
+| enable\_dns\_hostnames | Deve ser como true para habilitar DNS hostnames na VPC. | `bool` | `false` | no |
+| enable\_dns\_support | Deve estar como true para habilitar suporte de DNS na VPC. | `bool` | `true` | no |
 | enable\_ipv6 | Habilita ipv6 | `bool` | `false` | no |
 | external\_nat\_ip\_ids | Lista dos IDs de EPI para serem vinculados com os NAT Gateways. Deve ser utilizado em conjunto com o a variável `reuse_nat_ips`. | `list(string)` | `[]` | no |
-| instance\_tenancy | n/a | `string` | `"default"` | no |
+| instance\_tenancy | Define opção de tenancy para instâncias criadas na VPC. | `string` | `"default"` | no |
 | map\_public\_ip\_on\_launch | Se deseja que não seja vinculado automaticamente um IP público ao subir uma instância, deve-se ser informado como false. | `bool` | `true` | no |
 | one\_nat\_gateway\_per\_az | Define se será criado um NAT Gateway por zona de disponibilidade da região da VPC. | `bool` | `true` | no |
 | private\_subnet\_suffix | Sufixo que será concatenado com o nome das subnets privadas. | `string` | `"private"` | no |
