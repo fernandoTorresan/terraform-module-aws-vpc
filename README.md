@@ -61,9 +61,9 @@ pre-commit install
 | default\_network\_acl\_id | O ID do network ACL padrão. |
 | default\_route\_table\_id | O ID da tabela de rotas padrão. |
 | default\_security\_group\_id | O ID do security group criado por padrão no momento da criação da VPC. |
+| eip\_ids\_nat | Lista de IDs dos Elastic IPs criados para os NAT Gateways. |
+| eip\_nat\_public\_ips | Lista dos Elastic IPs criados para os NAT Gateways. |
 | igw\_id | O ID do Internet Gateway. |
-| nat\_ids | Lista de IDs dos Elastic IPs criados para os NAT Gateways. |
-| nat\_public\_ips | Lista dos Elastic IPs criados para os NAT Gateways. |
 | natgw\_ids | Lista dos IDs dos NAT Gateways. |
 | private\_route\_table\_ids | Lista dos IDs das tabelas de rotas privadas. |
 | private\_subnets | Lista dos IDs das subnets privadas. |

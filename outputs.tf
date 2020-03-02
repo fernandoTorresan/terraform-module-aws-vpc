@@ -84,12 +84,12 @@ output "private_route_table_ids" {
 # NAT Gateway / Internet Gateway
 # ----------------------------------------------------------------------------------------------------------------------
 
-output "nat_ids" {
+output "eip_ids_nat" {
   value       = aws_eip.nat.*.id
   description = "Lista de IDs dos Elastic IPs criados para os NAT Gateways."
 }
 
-output "nat_public_ips" {
+output "eip_nat_public_ips" {
   value       = aws_eip.nat.*.public_ip
   description = "Lista dos Elastic IPs criados para os NAT Gateways."
 }
