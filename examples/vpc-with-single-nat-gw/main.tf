@@ -2,10 +2,10 @@ provider "aws" {
   region = "us-east-2"
 }
 
-module "simple_vpc" {
+module "vpc_with_single_nat_gw" {
   source = "../../"
 
-  name       = "simple-vpc"
+  name       = "vpc-with-single-nat-gw"
   cidr_block = "20.0.0.0/16"
 
   single_nat_gateway = true
