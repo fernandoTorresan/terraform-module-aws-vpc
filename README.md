@@ -3,7 +3,8 @@ Terraform module to provide a AWS VPC
 
 ## Exemplos de uso
 
-- [simple-vpc](/examples/simple)
+- [vpc-with-single-nat-gw](/examples/vpc-with-single-nat-gw)
+- [vpc-with-one-nat-per-az](/examples/vpc-with-one-nat-per-az)
 
 ## Review Pre Commit
 
